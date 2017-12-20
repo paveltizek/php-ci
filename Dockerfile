@@ -4,7 +4,6 @@ RUN apt-get update \
   && apt-get install -y libcurl4-openssl-dev sudo git libxslt-dev mercurial subversion zlib1g-dev graphviz zip libmcrypt-dev libicu-dev g++ libpcre3-dev libgd-dev libfreetype6-dev sqlite \
   && apt-get update && apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/* \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl && docker-php-ext-install imap \
-
   && apt-get clean \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip \
