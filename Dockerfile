@@ -2,6 +2,9 @@ FROM php:7.1
 
 RUN apt-get update \
   && apt-get install -y libcurl4-openssl-dev sudo git libxslt-dev mercurial subversion zlib1g-dev graphviz zip libmcrypt-dev libicu-dev g++ libpcre3-dev libgd-dev libfreetype6-dev sqlite \
+  && apt-get update && apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/* \
+  && docker-php-ext-configure imap --with-kerberos --with-imap-ssl && docker-php-ext-install imap \
+
   && apt-get clean \
   && docker-php-ext-install soap \
   && docker-php-ext-install zip \
@@ -14,7 +17,6 @@ RUN apt-get update \
   && docker-php-ext-install json \
   && docker-php-ext-install intl \
   && docker-php-ext-install opcache \
-  && docker-php-ext-install imap \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
   && docker-php-ext-install gd
 
